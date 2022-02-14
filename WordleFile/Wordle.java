@@ -8,7 +8,7 @@ public class Wordle {
 		int randomNum = 1 + (int)(Math.random() * 4266);
 		int count = 1;
 		String target = getWord(randomNum);
-		
+
 		gameCode(count, target);
 	}
 	
@@ -21,6 +21,7 @@ public class Wordle {
 	 * @param target, the "correct" selected word
 	 * @throws FileNotFoundException
 	 */
+
 	public static void gameCode(int count, String target) throws FileNotFoundException {
 		//System.out.println(target); 
 		
@@ -30,12 +31,19 @@ public class Wordle {
 		String notIn = "";
 		
 		while(count < 7) {
-			String word = scan.nextLine().toLowerCase();
+			String word = scan.nextLine().toLowerCase().trim();
 			String noDuplicates = removeDuplicate(word);
 			
 			if(word.equalsIgnoreCase("REVEAL WORD")) {
 				System.out.println("The word was: " + target);
 				count = 1000;
+				break;
+			}
+			if(word.equalsIgnoreCase("GIVE HINT")) {
+				int randomNum = (int)(Math.random() * 5);
+				System.out.println("One of the letters is: " + target.charAt(randomNum));
+				System.out.print("Input: ");
+				
 			}
 			else if(isValid(word)) {
 				String contains = "";
